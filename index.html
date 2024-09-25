@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>by WlaDiS</title>
+    <link rel="icon" href="icon_site.png" type="image/png">
+    <meta name="google" content="notranslate">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: #2c2c2c;
+            background-image: url('background.png');
+            background-repeat: repeat;
+            background-size: auto;
+        }
+
+        .buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+        }
+
+        .button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            text-decoration: underline;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5%;
+            margin-top: 105px;
+            width: 90%;
+            opacity: 0; /* Изначально скрыто */
+            transition: opacity 0.5s ease; /* Плавный переход для изображений */
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .about-me {
+            display: none; /* Скрыть текст "Обо мне" изначально */
+            color: white;
+            font-size: 20px;
+            text-align: left; /* Выравнивание текста по левому краю */
+            margin: 20px 20px 0 20px; /* Отступы сверху и слева */
+            position: absolute; /* Абсолютное позиционирование */
+            top: 20px; /* Отступ от верхней границы */
+            left: 20px; /* Отступ от левой границы */
+            opacity: 0; /* Изначально скрыто */
+            transition: opacity 0.5s ease; /* Плавный переход для текста */
+            width: calc(100% - 60px); /* Ширина с учетом отступов */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="buttons">
+        <button class="button" id="button1">3D Modeling</button>
+        <button class="button" id="button2">Visualization</button>
+        <button class="button" id="button3">Games</button>
+        <button class="button" id="button4">Calculations</button>
+        <button class="button" id="button5">About me</button>
+        <button class="button" id="toggleLanguageButton">RU</button>
+    </div>
+
+    <div class="image-grid" id="imageGrid">
+        <img id="image1" src="" alt="Image 1">
+        <img id="image2" src="" alt="Image 2">
+        <img id="image3" src="" alt="Image 3">
+        <img id="image4" src="" alt="Image 4">
+        <img id="image5" src="" alt="Image 5">
+        <img id="image6" src="" alt="Image 6">
+        <img id="image7" src="" alt="Image 7">
+        <img id="image8" src="" alt="Image 8">
+    </div>
+
+    <div class="about-me" id="aboutMeSection">
+        <p id="aboutMeText"></p>
+    </div>
+
+    <script>
+        const toggleLanguageButton = document.getElementById("toggleLanguageButton");
+        const buttons = [
+            document.getElementById("button1"),
+            document.getElementById("button2"),
+            document.getElementById("button3"),
+            document.getElementById("button4"),
+            document.getElementById("button5")
+        ];
+        const images = [
+            document.getElementById("image1"),
+            document.getElementById("image2"),
+            document.getElementById("image3"),
+            document.getElementById("image4"),
+            document.getElementById("image5"),
+            document.getElementById("image6"),
+            document.getElementById("image7"),
+            document.getElementById("image8"),
+        ];
+        const aboutMeSection = document.getElementById('aboutMeSection');
+        const aboutMeText = document.getElementById('aboutMeText');
+        const imageGrid = document.getElementById('imageGrid');
+
+        // Тексты для языков
+        const textEnglish = [
+            "3D Modeling", 
+            "Visualization", 
+            "Games", 
+            "Calculations", 
+            "About me", 
+            "RU", 
+            "This is the placeholder text for the About Me section in English."
+        ];
+
+        const textRussian = [
+            "3D Моделирование", 
+            "Визуализация", 
+            "Игры", 
+            "Расчёты", 
+            "Обо мне", 
+            "EN", 
+            "Это текст-заглушка для раздела 'Обо мне' на русском."
+        ];
+
+        let isEnglish = true; // По умолчанию выбран английский язык
+        let currentCategory = ''; // Текущая категория изображений
+
+        // Функция для обновления текста на кнопках
+        function updateLanguage() {
+            const text = isEnglish ? textEnglish : textRussian;
+            buttons.forEach((button, index) => button.textContent = text[index]);
+            toggleLanguageButton.textContent = text[5];
+            aboutMeText.textContent = text[6]; // Обновление текста "Обо мне"
+        }
+
+        // Функция для загрузки изображений из выбранной категории
+        function loadImages(folder) {
+            // Если категория уже выбрана, не перезагружать
+            if (currentCategory === folder) {
+                return;
+            }
+
+            currentCategory = folder; // Обновляем текущую категорию
+
+            // Скрыть раздел "Обо мне" и показать изображения
+            if (folder !== 'aboutMe') {
+                aboutMeSection.style.opacity = 0; 
+                setTimeout(() => {
+                    aboutMeSection.style.display = 'none'; // Скрыть текст после завершения анимации
+                    imageGrid.style.opacity = 0; // Установить прозрачность изображений в 0
+                    setTimeout(() => {
+                        // Загружаем изображения
+                        for (let i = 0; i < images.length; i++) {
+                            images[i].src = `${folder}/image${i + 1}.jpg`; // Путь к изображениям
+                        }
+
+                        // Показ изображений после загрузки
+                        imageGrid.style.display = 'grid'; // Отобразить сетку изображений
+                        setTimeout(() => {
+                            imageGrid.style.opacity = 1; // Установить прозрачность в 1 для эффекта показа
+                        }, 50); // Небольшая задержка для плавного эффекта
+                    }, 500); // Задержка для завершения эффекта скрытия текста
+                }, 500); // Задержка для завершения эффекта скрытия текста
+            } else {
+                // Если нажали на "Обо мне"
+                imageGrid.style.opacity = 0; // Скрыть изображения
+                setTimeout(() => {
+                    imageGrid.style.display = 'none'; // Скрыть сетку изображений
+                    aboutMeSection.style.display = 'block'; // Показать раздел "Обо мне"
+                    setTimeout(() => {
+                        aboutMeSection.style.opacity = 1; // Устанавливаем прозрачность в 1
+                    }, 50); // Небольшая задержка для плавного эффекта
+                }, 500); // Задержка для завершения эффекта скрытия изображений
+            }
+        }
+
+        // Обработчики событий для кнопок
+        buttons[0].addEventListener("click", () => loadImages('3DModeling'));
+        buttons[1].addEventListener("click", () => loadImages('Visualization'));
+        buttons[2].addEventListener("click", () => loadImages('Games'));
+        buttons[3].addEventListener("click", () => loadImages('Calculations'));
+        
+        buttons[4].addEventListener("click", () => loadImages('aboutMe')); // Теперь просто загрузим "Обо мне"
+
+        toggleLanguageButton.addEventListener("click", function () {
+            isEnglish = !isEnglish;
+            updateLanguage();
+        });
+
+        // Инициализация с изображениями 3D моделирования
+        loadImages('3DModeling');
+        updateLanguage(); // Устанавливаем язык по умолчанию на английский
+    </script>
+</body>
+</html>
