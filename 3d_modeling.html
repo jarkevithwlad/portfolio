@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>by WlaDiS</title>
+    <link rel="icon" href="icon_site.png" type="image/png">
+    <meta name="google" content="notranslate">
+
+    <!-- Предзагрузка изображений -->
+    <link rel="preload" href="3DModeling/image1.jpg" as="image">
+    <link rel="preload" href="3DModeling/image2.jpg" as="image">
+    <link rel="preload" href="3DModeling/image3.jpg" as="image">
+    <link rel="preload" href="3DModeling/image4.jpg" as="image">
+    <link rel="preload" href="3DModeling/image5.jpg" as="image">
+    <link rel="preload" href="3DModeling/image6.jpg" as="image">
+    <link rel="preload" href="3DModeling/image7.jpg" as="image">
+    <link rel="preload" href="3DModeling/image8.jpg" as="image">
+    
+    <link rel="preload" href="Visualization/image1.jpg" as="image">
+    <link rel="preload" href="Visualization/image2.jpg" as="image">
+    <link rel="preload" href="Visualization/image3.jpg" as="image">
+    <link rel="preload" href="Visualization/image4.jpg" as="image">
+    <link rel="preload" href="Visualization/image5.jpg" as="image">
+    <link rel="preload" href="Visualization/image6.jpg" as="image">
+    <link rel="preload" href="Visualization/image7.jpg" as="image">
+    <link rel="preload" href="Visualization/image8.jpg" as="image">
+    
+    <link rel="preload" href="Games/image1.jpg" as="image">
+    <link rel="preload" href="Games/image2.jpg" as="image">
+    <link rel="preload" href="Games/image3.jpg" as="image">
+    <link rel="preload" href="Games/image4.jpg" as="image">
+    <link rel="preload" href="Games/image5.jpg" as="image">
+    <link rel="preload" href="Games/image6.jpg" as="image">
+    <link rel="preload" href="Games/image7.jpg" as="image">
+    <link rel="preload" href="Games/image8.jpg" as="image">
+    
+    <link rel="preload" href="Calculations/image1.jpg" as="image">
+    <link rel="preload" href="Calculations/image2.jpg" as="image">
+    <link rel="preload" href="Calculations/image3.jpg" as="image">
+    <link rel="preload" href="Calculations/image4.jpg" as="image">
+    <link rel="preload" href="Calculations/image5.jpg" as="image">
+    <link rel="preload" href="Calculations/image6.jpg" as="image">
+    <link rel="preload" href="Calculations/image7.jpg" as="image">
+    <link rel="preload" href="Calculations/image8.jpg" as="image">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #080808; /* Задаем цвет фона */
+            background-image: url('background.png');
+            background-repeat: repeat;
+            background-size: auto;
+            height: 100vh;
+            display: flex;
+            justify-content: flex-start; /* Примагничиваем к верху */
+            align-items: center; /* Центрируем по горизонтали */
+            flex-direction: column;
+            overflow: hidden; /* Предотвращаем переполнение при исчезновении изображений */
+        }
+
+        nav {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        .menu-item {
+            display: inline-block;
+            margin-left: 15px;
+            padding: 10px;
+            font-size: 18px;
+            color: rgb(120, 120, 120);
+            cursor: pointer;
+            transition: color 0.3s ease; /* Плавный переход для цвета */
+        }
+
+        .highlighted {
+            color: #ffffff;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 колонки */
+            gap: 5%; /* Отступы между изображениями */
+            width: 90%; /* Ширина сетки */
+            margin-top: 100px; /* Отступ сверху, чтобы не налазить на текст */
+            opacity: 1; /* Начальная непрозрачность */
+            transition: opacity 0.1s ease; /* Плавный переход для исчезновения */
+        }
+
+        .image-grid img {
+            width: 100%; /* Изображения занимают всю ширину ячеек */
+            height: auto;
+            border-radius: 5px;
+            opacity: 0; /* Начальное состояние - скрыто */
+            transition: opacity 0.3s ease; /* Плавный переход для непрозрачности */
+        }
+
+        .image-grid img.visible {
+            opacity: 1; /* Полностью видимо при добавлении класса 'visible' */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <span class="menu-item highlighted">3D Modeling</span>
+        <span class="menu-item" id="visualization-button">Visualization</span>
+        <span class="menu-item" id="games-button">Games</span>
+        <span class="menu-item" id="calculations-button">Calculations</span>
+        <span class="menu-item" id="about-button">About me</span>
+    </nav>
+
+    <div class="image-grid">
+        <img src="3DModeling/image1.jpg" alt="Image 1">
+        <img src="3DModeling/image2.jpg" alt="Image 2">
+        <img src="3DModeling/image3.jpg" alt="Image 3">
+        <img src="3DModeling/image4.jpg" alt="Image 4">
+        <img src="3DModeling/image5.jpg" alt="Image 5">
+        <img src="3DModeling/image6.jpg" alt="Image 6">
+        <img src="3DModeling/image7.jpg" alt="Image 7">
+        <img src="3DModeling/image8.jpg" alt="Image 8">
+    </div>
+
+    <script>
+        // Ждём полной загрузки DOM
+        document.addEventListener('DOMContentLoaded', () => {
+            // Получаем все изображения
+            const images = document.querySelectorAll('.image-grid img');
+
+            // Добавляем класс 'visible' для плавного появления изображений
+            setTimeout(() => {
+                images.forEach(image => {
+                    image.classList.add('visible');
+                });
+            }, 100); // Небольшая задержка для плавного эффекта
+
+            // Функция для обработки кликов по кнопкам
+            const navigateToPage = (buttonId, url) => {
+                document.getElementById(buttonId).addEventListener('click', () => {
+                    // Плавно исчезаем изображения
+                    images.forEach(image => {
+                        image.classList.remove('visible');
+                    });
+
+                    // Перенаправляем на другую страницу после исчезновения
+                    setTimeout(() => {
+                        window.location.href = url; // Замените на ваш целевой URL
+                    }, 100); // Задержка соответствует времени перехода
+                });
+            };
+
+            // Добавляем обработчики для каждой кнопки (кроме текущей)
+            navigateToPage('visualization-button', 'visualization.html');
+            navigateToPage('games-button', 'games.html');
+            navigateToPage('calculations-button', 'calculations.html');
+            navigateToPage('about-button', 'about.html');
+        });
+    </script>
+</body>
+</html>
