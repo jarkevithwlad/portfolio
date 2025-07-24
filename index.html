@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>by WlaDiS</title>
+    <link rel="icon" href="icon_site.png" type="image/png">
+    <meta name="google" content="notranslate">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            background-image: url('background.png');
+            background-repeat: repeat;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            background-color: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            height: 40px; /* Зададим явную высоту для расчетов */
+        }
+        
+        /* ГЛАВНОЕ ИСПРАВЛЕНИЕ */
+        main {
+            /* Этот отступ отодвигает ВЕСЬ контент вниз, чтобы он не был под шапкой при загрузке */
+            /* 40px (высота шапки) + 40px (желаемый отступ) = 80px */
+            padding-top: 80px;
+        }
+
+        .menu-item {
+            margin: 0 20px;
+            font-size: 18px;
+            color: #a0a0a0;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .menu-item:hover, .menu-item.active {
+            color: #ffffff;
+        }
+
+        .section {
+             /* Теперь у всех секций одинаковый и простой внутренний отступ */
+            padding: 40px 5%;
+            /* Это свойство по-прежнему нужно, чтобы при клике на ссылку браузер останавливался в правильном месте */
+            scroll-margin-top: 80px; 
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .image-grid .project-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .image-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .project-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            font-size: 20px;
+        }
+
+        .project-item:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .contact-info a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s;
+            margin: 0 15px;
+        }
+
+        .contact-info a:hover {
+            color: #ffcc00;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #a0a0a0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#3d-modeling" class="menu-item">3D Modeling</a>
+        <a href="#visualization" class="menu-item">Visualization</a>
+        <a href="#games" class="menu-item">Games</a>
+        <a href="#calculations" class="menu-item">Calculations</a>
+        <a href="#about" class="menu-item">About Me</a>
+    </nav>
+    
+    <main>
+        <div id="3d-modeling" class="section">
+            <h2 class="section-title">3D Modeling</h2>
+            <div class="image-grid">
+                <div class="project-item"><img src="3DModeling/image1.jpg" alt="3D Model 1"></div>
+                <div class="project-item"><img src="3DModeling/image2.jpg" alt="3D Model 2"></div>
+                <div class="project-item"><img src="3DModeling/image3.jpg" alt="3D Model 3"></div>
+                <div class="project-item"><img src="3DModeling/image4.jpg" alt="3D Model 4"></div>
+                <div class="project-item"><img src="3DModeling/image5.jpg" alt="3D Model 5"></div>
+                <div class="project-item"><img src="3DModeling/image6.jpg" alt="3D Model 6"></div>
+                <div class="project-item"><img src="3DModeling/image7.jpg" alt="3D Model 7"></div>
+                <div class="project-item"><img src="3DModeling/image8.jpg" alt="3D Model 8"></div>
+            </div>
+        </div>
+
+        <div id="visualization" class="section">
+            <h2 class="section-title">Visualization</h2>
+            <div class="image-grid">
+                <div class="project-item"><img src="Visualization/image1.jpg" alt="Visualization 1"></div>
+                <div class="project-item"><img src="Visualization/image2.jpg" alt="Visualization 2"></div>
+                <div class="project-item"><img src="Visualization/image3.jpg" alt="Visualization 3"></div>
+                <div class="project-item"><img src="Visualization/image4.jpg" alt="Visualization 4"></div>
+                <div class="project-item"><img src="Visualization/image5.jpg" alt="Visualization 5"></div>
+                <div class="project-item"><img src="Visualization/image6.jpg" alt="Visualization 6"></div>
+                <div class="project-item"><img src="Visualization/image7.jpg" alt="Visualization 7"></div>
+                <div class="project-item"><img src="Visualization/image8.jpg" alt="Visualization 8"></div>
+            </div>
+        </div>
+
+        <div id="games" class="section">
+            <h2 class="section-title">Games</h2>
+            <div class="image-grid">
+                <a href="https://drive.google.com/file/d/19S3TXCiAVeg7u4A5xwcHiUp0Psq6CC1_/view?usp=sharing" target="_blank" class="project-item">
+                    <img src="Games/image1.jpg" alt="Game 1">
+                    <div class="project-overlay">View Project</div>
+                </a>
+                <a href="https://drive.google.com/file/d/1rN6IdVjy-eDdA8Ia8FaYBsLRdoGJYlOp/view?usp=sharing" target="_blank" class="project-item">
+                    <img src="Games/image2.jpg" alt="Game 2">
+                    <div class="project-overlay">View Project</div>
+                </a>
+                <a href="https://drive.google.com/file/d/1BXMU4Dyiy0-7HeKE0VXKLOzUA7c1-6Lc/view?usp=sharing" target="_blank" class="project-item">
+                    <img src="Games/image3.jpg" alt="Game 3">
+                    <div class="project-overlay">View Project</div>
+                </a>
+                <div class="project-item"><img src="Games/image4.jpg" alt="Game 4"></div>
+                <div class="project-item"><img src="Games/image5.jpg" alt="Game 5"></div>
+                <div class="project-item"><img src="Games/image6.jpg" alt="Game 6"></div>
+                <div class="project-item"><img src="Games/image7.jpg" alt="Game 7"></div>
+                <div class="project-item"><img src="Games/image8.jpg" alt="Game 8"></div>
+            </div>
+        </div>
+
+        <div id="calculations" class="section">
+            <h2 class="section-title">Calculations</h2>
+            <div class="image-grid">
+                <div class="project-item"><img src="Calculations/image1.jpg" alt="Calculation 1"></div>
+                <div class="project-item"><img src="Calculations/image2.jpg" alt="Calculation 2"></div>
+                <div class="project-item"><img src="Calculations/image3.jpg" alt="Calculation 3"></div>
+                <div class="project-item"><img src="Calculations/image4.jpg" alt="Calculation 4"></div>
+                <div class="project-item"><img src="Calculations/image5.jpg" alt="Calculation 5"></div>
+                <div class="project-item"><img src="Calculations/image6.jpg" alt="Calculation 6"></div>
+                <div class="project-item"><img src="Calculations/image7.jpg" alt="Calculation 7"></div>
+                <div class="project-item"><img src="Calculations/image8.jpg" alt="Calculation 8"></div>
+            </div>
+        </div>
+
+        <div id="about" class="section">
+             <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <h1>Vladislav (WlaDiS)</h1>
+                <p>I specialize in 3D modeling, visualization, game development, and engineering calculations. In my portfolio, you will find projects that showcase my skills in these areas. I work with programs such as Blender, Unity, Unreal Engine, Visual Studio (C#), Substance Painter, Photoshop, and more.</p>
+                <p>I am always open to new opportunities and collaborations. If you have a project or idea that requires a creative approach, don't hesitate to get in touch with me!</p>
+                <div class="contact-info">
+                    <a href="mailto:jarkevithwlad@gmail.com">Email</a>
+                    <a href="https://t.me/jarkevithwladdev" target="_blank">Telegram</a>
+                    <a href="skype:live:jarkevithwlad?chat">Skype</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2024 by WlaDiS</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Анимации при появлении
+            ScrollReveal().reveal('.section-title', { delay: 200, origin: 'top', distance: '30px', easing: 'ease-in-out' });
+            ScrollReveal().reveal('.project-item', { delay: 300, origin: 'bottom', distance: '50px', interval: 50, easing: 'ease-in-out' });
+            ScrollReveal().reveal('.about-content h1', { delay: 200, origin: 'left', distance: '50px', easing: 'ease-in-out' });
+            ScrollReveal().reveal('.about-content p', { delay: 300, origin: 'right', distance: '50px', easing: 'ease-in-out' });
+            ScrollReveal().reveal('.contact-info a', { delay: 400, origin: 'bottom', distance: '50px', interval: 100, easing: 'ease-in-out' });
+
+            // Подсветка активного пункта меню
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('nav .menu-item');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: "-80px 0px -50% 0px",
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const activeLink = document.querySelector(`nav .menu-item[href="#${entry.target.id}"]`);
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        if (activeLink) {
+                            activeLink.classList.add('active');
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
