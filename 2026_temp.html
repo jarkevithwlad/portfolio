@@ -1,1277 +1,1226 @@
+# WlaDiS — FULL NEXT-GEN PORTFOLIO REDESIGN
+
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WlaDiS — Portfolio</title>
-
-    <meta name="theme-color" content="#08090f" />
-    <meta name="description" content="Портфолио Владислава — 3D Artist, Game Developer & Technical Designer" />
-
-    <link rel="icon" href="icon_site.png" type="image/png" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-
-    <script src="https://unpkg.com/scrollreveal"></script>
-
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
-
-        :root{
-            --bg:#07080d;
-            --bg2:#0d1018;
-            --card:#121622;
-            --card-border:rgba(255,255,255,.08);
-
-            --text:#ffffff;
-            --text2:#9fa8c7;
-
-            --primary:#7c5cff;
-            --secondary:#00d4ff;
-            --accent:#ff4ecd;
-
-            --gradient:
-            linear-gradient(
-                135deg,
-                #7c5cff 0%,
-                #00d4ff 45%,
-                #ff4ecd 100%
-            );
-
-            --shadow:
-            0 20px 80px rgba(0,0,0,.45);
-
-            --radius:26px;
-        }
-
-        html{
-            scroll-behavior:smooth;
-        }
-
-        body{
-            font-family:'Inter',sans-serif;
-            background:
-            radial-gradient(circle at top left, rgba(124,92,255,.15), transparent 30%),
-            radial-gradient(circle at top right, rgba(0,212,255,.10), transparent 30%),
-            linear-gradient(to bottom, #06070b, #090b11 50%, #06070b);
-
-            color:var(--text);
-            overflow-x:hidden;
-        }
-
-        body::before{
-            content:'';
-            position:fixed;
-            inset:0;
-            background-image:
-                linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
-            background-size:50px 50px;
-            pointer-events:none;
-            z-index:-1;
-        }
-
-        img{
-            display:block;
-            width:100%;
-        }
-
-        a{
-            text-decoration:none;
-        }
-
-        /* NAV */
-
-        nav{
-            position:fixed;
-            top:0;
-            left:0;
-            width:100%;
-            z-index:9999;
-
-            backdrop-filter:blur(16px);
-            background:rgba(7,8,13,.65);
-
-            border-bottom:1px solid rgba(255,255,255,.06);
-
-            transition:.35s ease;
-        }
-
-        nav.scrolled{
-            background:rgba(7,8,13,.92);
-            box-shadow:0 10px 50px rgba(0,0,0,.4);
-        }
-
-        .nav-container{
-            max-width:1400px;
-            margin:auto;
-
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-
-            padding:1.2rem 2rem;
-        }
-
-        .logo{
-            font-family:'Space Grotesk',sans-serif;
-            font-size:1.6rem;
-            font-weight:700;
-
-            background:var(--gradient);
-            -webkit-background-clip:text;
-            -webkit-text-fill-color:transparent;
-        }
-
-        .nav-menu{
-            display:flex;
-            gap:2rem;
-            list-style:none;
-        }
-
-        .nav-menu a{
-            color:var(--text2);
-            font-size:.95rem;
-            font-weight:500;
-            transition:.3s;
-            position:relative;
-        }
-
-        .nav-menu a::after{
-            content:'';
-            position:absolute;
-            left:0;
-            bottom:-7px;
-
-            width:0%;
-            height:2px;
-
-            background:var(--gradient);
-            border-radius:50px;
-
-            transition:.35s;
-        }
-
-        .nav-menu a:hover{
-            color:white;
-        }
-
-        .nav-menu a:hover::after{
-            width:100%;
-        }
-
-        .menu-toggle{
-            display:none;
-            background:none;
-            border:none;
-            color:white;
-            font-size:1.8rem;
-            cursor:pointer;
-        }
-
-        /* HERO */
-
-        .hero{
-            min-height:100vh;
-
-            display:flex;
-            align-items:center;
-            justify-content:center;
-
-            position:relative;
-
-            padding:10rem 2rem 5rem;
-        }
-
-        .hero-content{
-            max-width:1100px;
-            text-align:center;
-            position:relative;
-            z-index:2;
-        }
-
-        .hero-badge{
-            display:inline-flex;
-            align-items:center;
-            gap:.6rem;
-
-            padding:.7rem 1.2rem;
-            margin-bottom:2rem;
-
-            background:rgba(255,255,255,.04);
-            border:1px solid rgba(255,255,255,.08);
-
-            border-radius:999px;
-
-            color:#c7d1f3;
-            font-size:.95rem;
-        }
-
-        .hero-badge span{
-            width:10px;
-            height:10px;
-            border-radius:50%;
-            background:#00ff95;
-
-            box-shadow:0 0 15px #00ff95;
-        }
-
-        .hero h1{
-            font-family:'Space Grotesk',sans-serif;
-
-            font-size:clamp(3.4rem, 9vw, 7rem);
-            line-height:.95;
-
-            margin-bottom:2rem;
-
-            letter-spacing:-3px;
-        }
-
-        .gradient-text{
-            background:var(--gradient);
-            -webkit-background-clip:text;
-            -webkit-text-fill-color:transparent;
-        }
-
-        .hero p{
-            max-width:820px;
-            margin:auto;
-
-            color:var(--text2);
-
-            font-size:1.2rem;
-            line-height:1.8;
-        }
-
-        .hero-buttons{
-            display:flex;
-            justify-content:center;
-            gap:1rem;
-            flex-wrap:wrap;
-
-            margin-top:3rem;
-        }
-
-        .btn{
-            padding:1rem 1.8rem;
-            border-radius:18px;
-
-            font-weight:600;
-
-            transition:.35s;
-        }
-
-        .btn-primary{
-            background:var(--gradient);
-            color:white;
-
-            box-shadow:
-            0 15px 40px rgba(124,92,255,.35);
-        }
-
-        .btn-primary:hover{
-            transform:translateY(-4px) scale(1.02);
-        }
-
-        .btn-secondary{
-            border:1px solid rgba(255,255,255,.08);
-            background:rgba(255,255,255,.03);
-            color:white;
-        }
-
-        .btn-secondary:hover{
-            border-color:var(--primary);
-            transform:translateY(-4px);
-        }
-
-        .hero-stats{
-            margin-top:5rem;
-
-            display:grid;
-            grid-template-columns:repeat(3,1fr);
-            gap:1.5rem;
-        }
-
-        .stat-card{
-            padding:2rem;
-
-            background:rgba(255,255,255,.03);
-            border:1px solid rgba(255,255,255,.06);
-
-            border-radius:24px;
-
-            backdrop-filter:blur(10px);
-
-            transition:.35s;
-        }
-
-        .stat-card:hover{
-            transform:translateY(-8px);
-            border-color:rgba(124,92,255,.45);
-        }
-
-        .stat-number{
-            font-size:2rem;
-            font-weight:800;
-            margin-bottom:.4rem;
-
-            background:var(--gradient);
-            -webkit-background-clip:text;
-            -webkit-text-fill-color:transparent;
-        }
-
-        .stat-label{
-            color:var(--text2);
-        }
-
-        /* SECTION */
-
-        section{
-            max-width:1400px;
-            margin:auto;
-            padding:7rem 2rem;
-        }
-
-        .section-header{
-            margin-bottom:4rem;
-        }
-
-        .section-sub{
-            color:var(--secondary);
-            font-weight:600;
-            margin-bottom:1rem;
-            text-transform:uppercase;
-            letter-spacing:2px;
-            font-size:.9rem;
-        }
-
-        .section-title{
-            font-size:clamp(2.3rem,5vw,4.5rem);
-            font-family:'Space Grotesk',sans-serif;
-            margin-bottom:1rem;
-            line-height:1;
-        }
-
-        .section-desc{
-            max-width:700px;
-            color:var(--text2);
-            line-height:1.8;
-            font-size:1.1rem;
-        }
-
-        /* GALLERY */
-
-        .gallery-grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-            gap:2rem;
-        }
-
-        .project-card{
-            position:relative;
-            overflow:hidden;
-
-            border-radius:var(--radius);
-
-            aspect-ratio:1/1;
-
-            background:var(--card);
-
-            border:1px solid var(--card-border);
-
-            transition:.5s cubic-bezier(.2,.8,.2,1);
-        }
-
-        .project-card::before{
-            content:'';
-            position:absolute;
-            inset:0;
-
-            background:
-            linear-gradient(
-                to top,
-                rgba(0,0,0,.85),
-                transparent 50%
-            );
-
-            z-index:1;
-        }
-
-        .project-card img{
-            height:100%;
-            object-fit:cover;
-
-            transition:1s ease;
-        }
-
-        .project-card:hover img{
-            transform:scale(1.08);
-        }
-
-        .project-card:hover{
-            transform:translateY(-12px);
-            border-color:rgba(124,92,255,.35);
-
-            box-shadow:
-            0 30px 70px rgba(0,0,0,.45),
-            0 0 0 1px rgba(124,92,255,.25);
-        }
-
-        .project-info{
-            position:absolute;
-            left:0;
-            bottom:0;
-            z-index:2;
-
-            width:100%;
-            padding:2rem;
-        }
-
-        .project-category{
-            color:var(--secondary);
-            font-size:.85rem;
-            margin-bottom:.6rem;
-            text-transform:uppercase;
-            letter-spacing:1px;
-        }
-
-        .project-title{
-            font-size:1.3rem;
-            font-weight:700;
-        }
-
-        /* ABOUT */
-
-        .about{
-            display:grid;
-            grid-template-columns:1.1fr .9fr;
-            gap:4rem;
-            align-items:center;
-        }
-
-        .about-card{
-            padding:2.5rem;
-
-            border-radius:30px;
-
-            background:rgba(255,255,255,.03);
-            border:1px solid rgba(255,255,255,.07);
-
-            backdrop-filter:blur(15px);
-        }
-
-        .about-card p{
-            color:var(--text2);
-            line-height:1.9;
-            margin-bottom:1.5rem;
-            font-size:1.05rem;
-        }
-
-        .skills-grid{
-            display:grid;
-            grid-template-columns:repeat(2,1fr);
-            gap:1rem;
-        }
-
-        .skill{
-            padding:1.2rem;
-
-            border-radius:18px;
-
-            background:rgba(255,255,255,.03);
-            border:1px solid rgba(255,255,255,.06);
-
-            transition:.35s;
-        }
-
-        .skill:hover{
-            transform:translateY(-5px);
-            border-color:rgba(124,92,255,.4);
-        }
-
-        .skill h4{
-            margin-bottom:.5rem;
-            font-size:1rem;
-        }
-
-        .skill p{
-            color:var(--text2);
-            font-size:.92rem;
-            line-height:1.6;
-        }
-
-        /* CONTACT */
-
-        .contact-box{
-            margin-top:3rem;
-
-            display:flex;
-            gap:1rem;
-            flex-wrap:wrap;
-        }
-
-        .contact-link{
-            padding:1rem 1.5rem;
-
-            border-radius:18px;
-
-            color:white;
-            font-weight:600;
-
-            background:rgba(255,255,255,.03);
-            border:1px solid rgba(255,255,255,.08);
-
-            transition:.35s;
-        }
-
-        .contact-link:hover{
-            background:var(--gradient);
-            transform:translateY(-5px);
-        }
-
-        /* FOOTER */
-
-        footer{
-            padding:3rem 2rem;
-            text-align:center;
-
-            color:var(--text2);
-
-            border-top:1px solid rgba(255,255,255,.06);
-        }
-
-        /* SCROLL */
-
-        .scroll-top{
-            position:fixed;
-            right:1.5rem;
-            bottom:1.5rem;
-
-            width:54px;
-            height:54px;
-
-            border:none;
-            border-radius:50%;
-
-            background:var(--gradient);
-
-            color:white;
-            font-size:1.2rem;
-
-            cursor:pointer;
-
-            opacity:0;
-            visibility:hidden;
-
-            transition:.35s;
-
-            z-index:999;
-        }
-
-        .scroll-top.visible{
-            opacity:1;
-            visibility:visible;
-        }
-
-        .scroll-top:hover{
-            transform:translateY(-5px);
-        }
-
-        /* LIGHTBOX */
-
-        .lightbox{
-            position:fixed;
-            inset:0;
-
-            background:rgba(0,0,0,.95);
-
-            display:flex;
-            align-items:center;
-            justify-content:center;
-
-            z-index:99999;
-
-            opacity:0;
-            visibility:hidden;
-
-            transition:.3s;
-        }
-
-        .lightbox.active{
-            opacity:1;
-            visibility:visible;
-        }
-
-        .lightbox img{
-            max-width:90vw;
-            max-height:90vh;
-
-            border-radius:18px;
-        }
-
-        .lightbox-close{
-            position:absolute;
-            top:30px;
-            right:30px;
-
-            width:48px;
-            height:48px;
-
-            border:none;
-            border-radius:50%;
-
-            background:rgba(255,255,255,.1);
-
-            color:white;
-            font-size:1.2rem;
-
-            cursor:pointer;
-        }
-
-        /* MOBILE */
-
-        @media(max-width:980px){
-
-            .about{
-                grid-template-columns:1fr;
-            }
-
-            .hero-stats{
-                grid-template-columns:1fr;
-            }
-        }
-
-        @media(max-width:768px){
-
-            .menu-toggle{
-                display:block;
-            }
-
-            .nav-menu{
-                position:fixed;
-                top:80px;
-                left:0;
-
-                width:100%;
-
-                flex-direction:column;
-
-                background:#090b11;
-
-                padding:2rem;
-
-                transform:translateY(-120%);
-                transition:.35s;
-            }
-
-            .nav-menu.active{
-                transform:translateY(0);
-            }
-
-            .hero{
-                padding-top:8rem;
-            }
-
-            .hero h1{
-                letter-spacing:-1px;
-            }
-
-            .hero p{
-                font-size:1rem;
-            }
-
-            .gallery-grid{
-                grid-template-columns:1fr;
-            }
-
-            .skills-grid{
-                grid-template-columns:1fr;
-            }
-
-            section{
-                padding:5rem 1.3rem;
-            }
-
-            .nav-container{
-                padding:1rem 1.3rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WlaDiS // Digital Creator</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+:root{
+--bg:#050816;
+--bg2:#0d1328;
+--card:#11192f;
+--line:rgba(255,255,255,.08);
+--text:#ffffff;
+--muted:#97a4c4;
+--primary:#6d5dfc;
+--secondary:#00d5ff;
+--accent:#ff4fd8;
+--gradient:linear-gradient(135deg,#6d5dfc 0%,#00d5ff 50%,#ff4fd8 100%);
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:
+radial-gradient(circle at top left, rgba(109,93,252,.25), transparent 25%),
+radial-gradient(circle at bottom right, rgba(255,79,216,.18), transparent 25%),
+#050816;
+color:var(--text);
+overflow-x:hidden;
+}
+
+canvas{
+position:fixed;
+inset:0;
+z-index:-2;
+}
+
+body::before{
+content:'';
+position:fixed;
+inset:0;
+background-image:
+linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+background-size:60px 60px;
+pointer-events:none;
+z-index:-1;
+}
+
+a{
+text-decoration:none;
+}
+
+img{
+display:block;
+width:100%;
+}
+
+/* LOADER */
+
+.loader{
+position:fixed;
+inset:0;
+background:#04060d;
+z-index:99999;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+gap:1rem;
+transition:1s ease;
+}
+
+.loader.hidden{
+opacity:0;
+pointer-events:none;
+}
+
+.loader-logo{
+font-family:'Orbitron',sans-serif;
+font-size:4rem;
+font-weight:800;
+background:var(--gradient);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:pulse 2s infinite;
+}
+
+.loader-line{
+width:240px;
+height:4px;
+border-radius:999px;
+background:rgba(255,255,255,.08);
+overflow:hidden;
+}
+
+.loader-line span{
+display:block;
+height:100%;
+width:0%;
+background:var(--gradient);
+animation:loading 2.4s ease forwards;
+}
+
+@keyframes loading{
+100%{width:100%;}
+}
+
+@keyframes pulse{
+50%{transform:scale(1.05)}
+}
+
+/* NAV */
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:90px;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:999;
+backdrop-filter:blur(16px);
+background:rgba(4,7,17,.55);
+border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.nav-inner{
+width:min(1450px,92%);
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.logo{
+font-family:'Orbitron',sans-serif;
+font-size:1.7rem;
+font-weight:800;
+background:var(--gradient);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.nav-links{
+display:flex;
+gap:2rem;
+}
+
+.nav-links a{
+color:#b7c4e4;
+font-weight:600;
+position:relative;
+transition:.3s;
+}
+
+.nav-links a::after{
+content:'';
+position:absolute;
+left:0;
+bottom:-7px;
+width:0%;
+height:2px;
+background:var(--gradient);
+transition:.4s;
+}
+
+.nav-links a:hover{
+color:white;
+}
+
+.nav-links a:hover::after{
+width:100%;
+}
+
+.menu-btn{
+display:none;
+background:none;
+border:none;
+color:white;
+font-size:2rem;
+cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+min-height:100vh;
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:8rem 5vw;
+}
+
+.hero-content{
+width:min(1450px,100%);
+display:grid;
+grid-template-columns:1.1fr .9fr;
+gap:4rem;
+align-items:center;
+}
+
+.hero-left{
+position:relative;
+z-index:2;
+}
+
+.hero-badge{
+display:inline-flex;
+align-items:center;
+gap:.7rem;
+padding:.9rem 1.3rem;
+border-radius:999px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+margin-bottom:2rem;
+color:#dbe7ff;
+font-weight:600;
+}
+
+.hero-badge span{
+width:10px;
+height:10px;
+border-radius:50%;
+background:#00ff99;
+box-shadow:0 0 14px #00ff99;
+}
+
+.hero h1{
+font-family:'Orbitron',sans-serif;
+font-size:clamp(4rem,8vw,8rem);
+line-height:.9;
+margin-bottom:2rem;
+letter-spacing:-4px;
+}
+
+.hero h1 span{
+background:var(--gradient);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero p{
+font-size:1.2rem;
+line-height:2;
+max-width:750px;
+color:var(--muted);
+}
+
+.hero-actions{
+display:flex;
+gap:1rem;
+margin-top:3rem;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:1.15rem 2rem;
+border-radius:20px;
+font-weight:700;
+transition:.4s cubic-bezier(.2,.8,.2,1);
+}
+
+.btn-primary{
+background:var(--gradient);
+color:white;
+box-shadow:0 15px 40px rgba(109,93,252,.35);
+}
+
+.btn-primary:hover{
+transform:translateY(-5px) scale(1.03);
+}
+
+.btn-ghost{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+color:white;
+}
+
+.btn-ghost:hover{
+transform:translateY(-5px);
+border-color:rgba(109,93,252,.45);
+}
+
+.hero-right{
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.hero-card{
+width:100%;
+max-width:500px;
+aspect-ratio:1/1.2;
+border-radius:40px;
+background:
+linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(30px);
+position:relative;
+overflow:hidden;
+box-shadow:
+0 50px 120px rgba(0,0,0,.55),
+0 0 0 1px rgba(255,255,255,.04);
+}
+
+.hero-card::before{
+content:'';
+position:absolute;
+width:300px;
+height:300px;
+background:rgba(0,213,255,.25);
+filter:blur(90px);
+top:-100px;
+right:-100px;
+}
+
+.hero-card::after{
+content:'';
+position:absolute;
+width:250px;
+height:250px;
+background:rgba(255,79,216,.18);
+filter:blur(80px);
+bottom:-80px;
+left:-80px;
+}
+
+.floating-ui{
+position:absolute;
+padding:1rem 1.2rem;
+border-radius:20px;
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.08);
+font-weight:700;
+}
+
+.floating-1{
+top:12%;
+left:-50px;
+}
+
+.floating-2{
+bottom:12%;
+right:-40px;
+}
+
+.floating-3{
+top:50%;
+right:-80px;
+}
+
+/* SECTION */
+
+section{
+width:min(1450px,92%);
+margin:auto;
+padding:8rem 0;
+position:relative;
+}
+
+.section-top{
+margin-bottom:4rem;
+}
+
+.section-kicker{
+text-transform:uppercase;
+letter-spacing:3px;
+font-size:.85rem;
+font-weight:700;
+margin-bottom:1rem;
+color:var(--secondary);
+}
+
+.section-title{
+font-family:'Orbitron',sans-serif;
+font-size:clamp(2.5rem,5vw,5rem);
+line-height:1;
+margin-bottom:1rem;
+}
+
+.section-text{
+max-width:700px;
+font-size:1.1rem;
+line-height:1.9;
+color:var(--muted);
+}
+
+/* PROJECTS */
+
+.projects-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:2rem;
+}
+
+.project{
+position:relative;
+border-radius:34px;
+overflow:hidden;
+height:460px;
+background:var(--card);
+border:1px solid rgba(255,255,255,.08);
+transition:.5s cubic-bezier(.2,.8,.2,1);
+}
+
+.project:hover{
+transform:translateY(-15px) rotateX(4deg);
+box-shadow:0 40px 80px rgba(0,0,0,.55);
+}
+
+.project img{
+height:100%;
+object-fit:cover;
+transition:1s ease;
+}
+
+.project:hover img{
+transform:scale(1.08);
+}
+
+.project-overlay{
+position:absolute;
+inset:0;
+background:
+linear-gradient(to top, rgba(0,0,0,.95), transparent 60%);
+display:flex;
+align-items:flex-end;
+padding:2rem;
+}
+
+.project-info h3{
+font-size:1.5rem;
+margin-bottom:.5rem;
+}
+
+.project-info p{
+color:#c9d5f1;
+line-height:1.6;
+}
+
+/* TIMELINE */
+
+.timeline{
+position:relative;
+padding-left:3rem;
+margin-top:4rem;
+}
+
+.timeline::before{
+content:'';
+position:absolute;
+left:10px;
+top:0;
+width:2px;
+height:100%;
+background:linear-gradient(to bottom,var(--primary),transparent);
+}
+
+.timeline-item{
+position:relative;
+margin-bottom:3rem;
+padding:2rem;
+background:rgba(255,255,255,.03);
+border:1px solid rgba(255,255,255,.06);
+border-radius:26px;
+}
+
+.timeline-item::before{
+content:'';
+position:absolute;
+left:-36px;
+top:35px;
+width:20px;
+height:20px;
+border-radius:50%;
+background:var(--gradient);
+}
+
+.timeline-item h4{
+font-size:1.3rem;
+margin-bottom:1rem;
+}
+
+.timeline-item p{
+color:var(--muted);
+line-height:1.8;
+}
+
+/* SKILLS */
+
+.skills-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:1.5rem;
+margin-top:3rem;
+}
+
+.skill-card{
+padding:2rem;
+background:rgba(255,255,255,.03);
+border-radius:30px;
+border:1px solid rgba(255,255,255,.06);
+transition:.4s;
+}
+
+.skill-card:hover{
+transform:translateY(-8px);
+border-color:rgba(0,213,255,.35);
+}
+
+.skill-card h3{
+margin-bottom:1rem;
+font-size:1.2rem;
+}
+
+.skill-card p{
+line-height:1.8;
+color:var(--muted);
+}
+
+/* CONTACT */
+
+.contact-panel{
+position:relative;
+padding:5rem;
+border-radius:40px;
+overflow:hidden;
+background:
+linear-gradient(135deg, rgba(109,93,252,.16), rgba(0,213,255,.12));
+border:1px solid rgba(255,255,255,.08);
+text-align:center;
+}
+
+.contact-panel::before{
+content:'';
+position:absolute;
+width:500px;
+height:500px;
+background:rgba(255,255,255,.06);
+filter:blur(100px);
+left:-100px;
+top:-200px;
+}
+
+.contact-panel h2{
+font-family:'Orbitron',sans-serif;
+font-size:clamp(2.5rem,5vw,5rem);
+margin-bottom:1rem;
+}
+
+.contact-panel p{
+max-width:700px;
+margin:auto;
+line-height:1.9;
+color:#d3def9;
+}
+
+.contact-buttons{
+display:flex;
+justify-content:center;
+gap:1rem;
+flex-wrap:wrap;
+margin-top:3rem;
+}
+
+/* FOOTER */
+
+footer{
+padding:3rem 2rem;
+text-align:center;
+color:#8c99b9;
+}
+
+/* LIGHTBOX */
+
+.lightbox{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.96);
+display:flex;
+align-items:center;
+justify-content:center;
+opacity:0;
+visibility:hidden;
+transition:.4s;
+z-index:99999;
+}
+
+.lightbox.active{
+opacity:1;
+visibility:visible;
+}
+
+.lightbox img{
+max-width:90vw;
+max-height:90vh;
+border-radius:20px;
+box-shadow:0 40px 100px rgba(0,0,0,.7);
+}
+
+.close-lightbox{
+position:absolute;
+top:30px;
+right:30px;
+width:55px;
+height:55px;
+border-radius:50%;
+border:none;
+background:rgba(255,255,255,.1);
+color:white;
+font-size:1.4rem;
+cursor:pointer;
+}
+
+/* MOBILE */
+
+@media(max-width:980px){
+
+.hero-content{
+grid-template-columns:1fr;
+}
+
+.hero-right{
+order:-1;
+}
+
+.hero-card{
+max-width:400px;
+}
+
+}
+
+@media(max-width:768px){
+
+nav{
+height:80px;
+}
+
+.menu-btn{
+display:block;
+}
+
+.nav-links{
+position:fixed;
+top:80px;
+left:0;
+width:100%;
+background:#09101f;
+flex-direction:column;
+padding:2rem;
+transform:translateY(-140%);
+transition:.5s;
+}
+
+.nav-links.active{
+transform:translateY(0);
+}
+
+.hero h1{
+letter-spacing:-2px;
+}
+
+.hero p{
+font-size:1rem;
+}
+
+.hero-card{
+max-width:100%;
+}
+
+.project{
+height:380px;
+}
+
+.contact-panel{
+padding:3rem 1.5rem;
+}
+
+.timeline{
+padding-left:2rem;
+}
+
+.timeline-item::before{
+left:-28px;
+}
+
+}
+
+</style>
 </head>
-
 <body>
 
-    <!-- NAV -->
-
-    <nav id="navbar">
-        <div class="nav-container">
-
-            <div class="logo">WlaDiS</div>
-
-            <button class="menu-toggle" id="menuToggle">☰</button>
-
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#modeling">3D</a></li>
-                <li><a href="#visual">Визуализация</a></li>
-                <li><a href="#games">Игры</a></li>
-                <li><a href="#apps">Приложения</a></li>
-                <li><a href="#calc">Расчёты</a></li>
-                <li><a href="#about">Обо мне</a></li>
-            </ul>
-
-        </div>
-    </nav>
-
-    <!-- HERO -->
-
-    <section class="hero">
-
-        <div class="hero-content">
-
-            <div class="hero-badge">
-                <span></span>
-                Open for freelance & collaboration
-            </div>
-
-            <h1>
-                3D Artist &<br>
-                <span class="gradient-text">
-                    Game Developer
-                </span>
-            </h1>
-
-            <p>
-                Создаю современные 3D проекты, игровые механики,
-                визуализации и технические решения.
-                Работаю с Blender, Unreal Engine 5, Unity,
-                AI-инструментами и инженерным ПО.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="#modeling" class="btn btn-primary">
-                    Смотреть работы
-                </a>
-
-                <a href="#about" class="btn btn-secondary">
-                    Связаться
-                </a>
-
-            </div>
-
-            <div class="hero-stats">
-
-                <div class="stat-card">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Проектов</div>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-number">5+</div>
-                    <div class="stat-label">Лет опыта</div>
-                </div>
-
-                <div class="stat-card">
-                    <div class="stat-number">10+</div>
-                    <div class="stat-label">Технологий</div>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- 3D -->
-
-    <section id="modeling">
-
-        <div class="section-header">
-            <div class="section-sub">Portfolio</div>
-
-            <h2 class="section-title">
-                3D Моделирование
-            </h2>
-
-            <p class="section-desc">
-                Детализированные модели, hard-surface,
-                game-ready assets и production quality сцены.
-            </p>
-        </div>
-
-        <div class="gallery-grid">
-
-            <div class="project-card">
-                <img src="3DModeling/image1.jpg">
-                <div class="project-info">
-                    <div class="project-category">3D Asset</div>
-                    <div class="project-title">Hard Surface Model</div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <img src="3DModeling/image2.jpg">
-                <div class="project-info">
-                    <div class="project-category">3D Asset</div>
-                    <div class="project-title">Game Prop</div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <img src="3DModeling/image3.jpg">
-                <div class="project-info">
-                    <div class="project-category">Environment</div>
-                    <div class="project-title">Sci-Fi Scene</div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <img src="3DModeling/image4.jpg">
-                <div class="project-info">
-                    <div class="project-category">Visualization</div>
-                    <div class="project-title">Product Design</div>
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- VISUAL -->
-
-    <section id="visual">
-
-        <div class="section-header">
-            <div class="section-sub">Render</div>
-
-            <h2 class="section-title">
-                Визуализация
-            </h2>
-
-            <p class="section-desc">
-                Фотореалистичные рендеры,
-                cinematic lighting и современные материалы.
-            </p>
-        </div>
-
-        <div class="gallery-grid">
-
-            <div class="project-card">
-                <img src="Visualization/image1.jpg">
-                <div class="project-info">
-                    <div class="project-category">Render</div>
-                    <div class="project-title">Interior Concept</div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <img src="Visualization/image2.jpg">
-                <div class="project-info">
-                    <div class="project-category">Render</div>
-                    <div class="project-title">Environment Scene</div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <img src="Visualization/image3.jpg">
-                <div class="project-info">
-                    <div class="project-category">Lighting</div>
-                    <div class="project-title">Cinematic Frame</div>
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- GAMES -->
-
-    <section id="games">
-
-        <div class="section-header">
-            <div class="section-sub">Interactive</div>
-
-            <h2 class="section-title">
-                Игры & Dev
-            </h2>
-
-            <p class="section-desc">
-                Разработка игровых систем,
-                gameplay логики и immersive experience.
-            </p>
-        </div>
-
-        <div class="gallery-grid">
-
-            <a href="https://drive.google.com/file/d/19S3TXCiAVeg7u4A5xwcHiUp0Psq6CC1_/view?usp=sharing" target="_blank" class="project-card">
-
-                <img src="Games/image1.jpg">
-
-                <div class="project-info">
-                    <div class="project-category">Unity</div>
-                    <div class="project-title">Action Prototype</div>
-                </div>
-
-            </a>
-
-            <a href="https://drive.google.com/file/d/1rN6IdVjy-eDdA8Ia8FaYBsLRdoGJYlOp/view?usp=sharing" target="_blank" class="project-card">
-
-                <img src="Games/image2.jpg">
-
-                <div class="project-info">
-                    <div class="project-category">UE5</div>
-                    <div class="project-title">Game Environment</div>
-                </div>
-
-            </a>
-
-            <a href="https://drive.google.com/file/d/1BXMU4Dyiy0-7HeKE0VXKLOzUA7c1-6Lc/view?usp=sharing" target="_blank" class="project-card">
-
-                <img src="Games/image3.jpg">
-
-                <div class="project-info">
-                    <div class="project-category">Prototype</div>
-                    <div class="project-title">Gameplay Demo</div>
-                </div>
-
-            </a>
-
-        </div>
-
-    </section>
-
-    <!-- APPS -->
-
-    <section id="apps">
-
-        <div class="section-header">
-            <div class="section-sub">Mobile</div>
-
-            <h2 class="section-title">
-                Приложения
-            </h2>
-
-            <p class="section-desc">
-                Разработка мобильных решений,
-                UI/UX и интеграция современных технологий.
-            </p>
-        </div>
-
-        <div class="gallery-grid">
-
-            <a href="https://play.google.com/store/apps/details?id=com.fity.bywladis"
-               target="_blank"
-               class="project-card">
-
-                <img src="https://play-lh.googleusercontent.com/eX7cBB0Kt1kG_w6Eh0l4QZT_G1tWosP1v3vlnLY8eJTWAWH1p99fjN9uVtb1NZigfhArfURugkHapPTnFpPb=w480-h960-rw">
-
-                <div class="project-info">
-                    <div class="project-category">Android App</div>
-                    <div class="project-title">FIT-Y</div>
-                </div>
-
-            </a>
-
-        </div>
-
-    </section>
-
-    <!-- CALCULATIONS -->
-
-    <section id="calc">
-
-        <div class="section-header">
-            <div class="section-sub">Engineering</div>
-
-            <h2 class="section-title">
-                Инженерные расчёты
-            </h2>
-
-            <p class="section-desc">
-                SolidWorks, техническая документация,
-                механика и инженерные системы.
-            </p>
-        </div>
-
-        <div class="gallery-grid">
-
-            <div class="project-card">
-                <img src="Calculations/image1.jpg">
-                <div class="project-info">
-                    <div class="project-category">CAD</div>
-                    <div class="project-title">Technical Scheme</div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <img src="Calculations/image2.jpg">
-                <div class="project-info">
-                    <div class="project-category">Engineering</div>
-                    <div class="project-title">Mechanics</div>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <img src="Calculations/image3.jpg">
-                <div class="project-info">
-                    <div class="project-category">Blueprint</div>
-                    <div class="project-title">Technical Drawing</div>
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ABOUT -->
-
-    <section id="about">
-
-        <div class="section-header">
-
-            <div class="section-sub">
-                About Me
-            </div>
-
-            <h2 class="section-title">
-                Немного обо мне
-            </h2>
-
-        </div>
-
-        <div class="about">
-
-            <div class="about-card">
-
-                <p>
-                    Привет! Я Владислав — занимаюсь
-                    3D моделированием, разработкой игр,
-                    визуализацией и техническими проектами.
-                </p>
-
-                <p>
-                    Мне нравится совмещать дизайн,
-                    технологии и программирование
-                    для создания современных digital-проектов.
-                </p>
-
-                <p>
-                    Открыт к сотрудничеству,
-                    freelance проектам и интересным идеям.
-                </p>
-
-                <div class="contact-box">
-
-                    <a href="mailto:jarkevithwlad@gmail.com"
-                       class="contact-link">
-                        📧 Email
-                    </a>
-
-                    <a href="https://t.me/wladis_dev"
-                       target="_blank"
-                       class="contact-link">
-                        ✈ Telegram
-                    </a>
-
-                </div>
-
-            </div>
-
-            <div class="skills-grid">
-
-                <div class="skill">
-                    <h4>3D & Render</h4>
-                    <p>Blender, Substance Painter, Rendering</p>
-                </div>
-
-                <div class="skill">
-                    <h4>Game Dev</h4>
-                    <p>Unity, Unreal Engine 5, Gameplay Systems</p>
-                </div>
-
-                <div class="skill">
-                    <h4>Programming</h4>
-                    <p>C#, JavaScript, Python, VS Code</p>
-                </div>
-
-                <div class="skill">
-                    <h4>Engineering</h4>
-                    <p>SolidWorks, Technical Documentation</p>
-                </div>
-
-                <div class="skill">
-                    <h4>AI Tools</h4>
-                    <p>ComfyUI, SD.WebUI, Local LLM</p>
-                </div>
-
-                <div class="skill">
-                    <h4>Design</h4>
-                    <p>UI/UX, Photoshop, Motion & Visual Design</p>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- FOOTER -->
-
-    <footer>
-        © 2026 WlaDiS — Portfolio
-    </footer>
-
-    <!-- SCROLL -->
-
-    <button class="scroll-top" id="scrollTop">
-        ↑
-    </button>
-
-    <!-- LIGHTBOX -->
-
-    <div class="lightbox" id="lightbox">
-
-        <button class="lightbox-close" id="lightboxClose">
-            ✕
-        </button>
-
-        <img src="" id="lightboxImg">
-
-    </div>
-
-    <!-- JS -->
-
-    <script>
-
-        // MOBILE MENU
-
-        const menuToggle = document.getElementById('menuToggle');
-        const navMenu = document.getElementById('navMenu');
-
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        // NAV SCROLL
-
-        const navbar = document.getElementById('navbar');
-
-        window.addEventListener('scroll', () => {
-
-            if(window.scrollY > 50){
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-
-        });
-
-        // SCROLL TOP
-
-        const scrollTop = document.getElementById('scrollTop');
-
-        window.addEventListener('scroll', () => {
-
-            if(window.scrollY > 300){
-                scrollTop.classList.add('visible');
-            } else {
-                scrollTop.classList.remove('visible');
-            }
-
-        });
-
-        scrollTop.addEventListener('click', () => {
-
-            window.scrollTo({
-                top:0,
-                behavior:'smooth'
-            });
-
-        });
-
-        // SCROLL REVEAL
-
-        ScrollReveal().reveal('.section-header', {
-            delay:150,
-            distance:'60px',
-            origin:'bottom',
-            duration:1000
-        });
-
-        ScrollReveal().reveal('.project-card', {
-            delay:100,
-            distance:'80px',
-            origin:'bottom',
-            interval:100,
-            duration:1200
-        });
-
-        ScrollReveal().reveal('.skill', {
-            delay:100,
-            distance:'40px',
-            origin:'bottom',
-            interval:80,
-            duration:900
-        });
-
-        ScrollReveal().reveal('.hero-content', {
-            delay:200,
-            distance:'100px',
-            origin:'bottom',
-            duration:1200
-        });
-
-        // LIGHTBOX
-
-        const cards = document.querySelectorAll('.project-card img');
-
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightboxImg');
-        const lightboxClose = document.getElementById('lightboxClose');
-
-        cards.forEach(card => {
-
-            card.addEventListener('click', (e) => {
-
-                e.preventDefault();
-
-                lightbox.classList.add('active');
-                lightboxImg.src = card.src;
-
-                document.body.style.overflow = 'hidden';
-
-            });
-
-        });
-
-        lightboxClose.addEventListener('click', () => {
-
-            lightbox.classList.remove('active');
-
-            document.body.style.overflow = '';
-
-        });
-
-        lightbox.addEventListener('click', (e) => {
-
-            if(e.target === lightbox){
-
-                lightbox.classList.remove('active');
-
-                document.body.style.overflow = '';
-
-            }
-
-        });
-
-    </script>
+<div class="loader" id="loader">
+<div class="loader-logo">WlaDiS</div>
+<div class="loader-line"><span></span></div>
+</div>
+
+<canvas id="bg"></canvas>
+
+<nav>
+<div class="nav-inner">
+<div class="logo">WlaDiS</div>
+
+<button class="menu-btn" id="menuBtn">☰</button>
+
+<div class="nav-links" id="navLinks">
+<a href="#modeling">3D</a>
+<a href="#visual">Visual</a>
+<a href="#games">Games</a>
+<a href="#apps">Apps</a>
+<a href="#engineering">Engineering</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</div>
+</div>
+</nav>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="hero-left">
+
+<div class="hero-badge">
+<span></span>
+Available for freelance & collaboration
+</div>
+
+<h1>
+DIGITAL<br>
+<span>CREATOR</span>
+</h1>
+
+<p>
+Создаю игровые миры, cinematic визуализации,
+3D модели, мобильные приложения и инженерные решения.
+Мой фокус — современный визуал, атмосфера и технологии нового поколения.
+</p>
+
+<div class="hero-actions">
+<a href="#modeling" class="btn btn-primary">Explore Portfolio</a>
+<a href="#contact" class="btn btn-ghost">Contact Me</a>
+</div>
+
+</div>
+
+<div class="hero-right">
+
+<div class="hero-card">
+
+<div class="floating-ui floating-1">Blender 3D</div>
+<div class="floating-ui floating-2">Unreal Engine 5</div>
+<div class="floating-ui floating-3">AI Tools</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="modeling">
+
+<div class="section-top">
+<div class="section-kicker">3D Design</div>
+<h2 class="section-title">3D Modeling</h2>
+<p class="section-text">
+Высокодетализированные модели,
+hard-surface дизайн,
+игровые assets и cinematic production.
+</p>
+</div>
+
+<div class="projects-grid">
+
+<div class="project">
+<img src="3DModeling/image1.jpg">
+<div class="project-overlay">
+<div class="project-info">
+<h3>Hard Surface</h3>
+<p>Production quality 3D asset</p>
+</div>
+</div>
+</div>
+
+<div class="project">
+<img src="3DModeling/image2.jpg">
+<div class="project-overlay">
+<div class="project-info">
+<h3>Game Ready</h3>
+<p>Optimized realtime model</p>
+</div>
+</div>
+</div>
+
+<div class="project">
+<img src="3DModeling/image3.jpg">
+<div class="project-overlay">
+<div class="project-info">
+<h3>Environment</h3>
+<p>Worldbuilding & scene design</p>
+</div>
+</div>
+</div>
+
+<div class="project">
+<img src="3DModeling/image4.jpg">
+<div class="project-overlay">
+<div class="project-info">
+<h3>Product Design</h3>
+<p>Visualization & presentation</p>
+</div>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section id="visual">
+
+<div class="section-top">
+<div class="section-kicker">Visual Production</div>
+<h2 class="section-title">Visualization</h2>
+<p class="section-text">
+Cinematic lighting, реалистичные материалы,
+атмосферные сцены и high-end rendering.
+</p>
+</div>
+
+<div class="projects-grid">
+
+<div class="project">
+<img src="Visualization/image1.jpg">
+<div class="project-overlay">
+<div class="project-info">
+<h3>Cinematic Render</h3>
+<p>Atmospheric visual scene</p>
+</div>
+</div>
+</div>
+
+<div class="project">
+<img src="Visualization/image2.jpg">
+<div class="project-overlay">
+<div class="project-info">
+<h3>Lighting Setup</h3>
+<p>Realistic shadows & mood</p>
+</div>
+</div>
+</div>
+
+<div class="project">
+<img src="Visualization/image3.jpg">
+<div class="project-overlay">
+<div class="project-info">
+<h3>Photorealism</h3>
+<p>High quality rendering</p>
+</div>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section id="games">
+
+<div class="section-top">
+<div class="section-kicker">Interactive Experience</div>
+<h2 class="section-title">Games & Systems</h2>
+<p class="section-text">
+Gameplay systems, immersion,
+interaction design и realtime technologies.
+</p>
+</div>
+
+<div class="timeline">
+
+<div class="timeline-item">
+<h4>Unity Development</h4>
+<p>
+Разработка gameplay механик,
+систем взаимодействия и realtime логики.
+</p>
+</div>
+
+<div class="timeline-item">
+<h4>Unreal Engine 5</h4>
+<p>
+Создание cinematic environments,
+lighting setups и игровых сцен нового поколения.
+</p>
+</div>
+
+<div class="timeline-item">
+<h4>Interactive Prototypes</h4>
+<p>
+Быстрое создание игровых концептов,
+прототипов и immersive experiences.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="apps">
+
+<div class="section-top">
+<div class="section-kicker">Mobile</div>
+<h2 class="section-title">Apps</h2>
+<p class="section-text">
+Разработка мобильных приложений,
+UI/UX и современных digital продуктов.
+</p>
+</div>
+
+<div class="projects-grid">
+
+<a class="project"
+href="https://play.google.com/store/apps/details?id=com.fity.bywladis"
+target="_blank">
+
+<img src="https://play-lh.googleusercontent.com/eX7cBB0Kt1kG_w6Eh0l4QZT_G1tWosP1v3vlnLY8eJTWAWH1p99fjN9uVtb1NZigfhArfURugkHapPTnFpPb=w480-h960-rw">
+
+<div class="project-overlay">
+<div class="project-info">
+<h3>FIT-Y</h3>
+<p>Fitness & productivity mobile app</p>
+</div>
+</div>
+
+</a>
+
+</div>
+
+</section>
+
+<section id="engineering">
+
+<div class="section-top">
+<div class="section-kicker">Engineering</div>
+<h2 class="section-title">Technical Systems</h2>
+<p class="section-text">
+SolidWorks, инженерные расчёты,
+CAD документация и технические системы.
+</p>
+</div>
+
+<div class="skills-grid">
+
+<div class="skill-card">
+<h3>SolidWorks</h3>
+<p>3D CAD modeling & technical design</p>
+</div>
+
+<div class="skill-card">
+<h3>Technical Docs</h3>
+<p>Blueprints, schemes & production docs</p>
+</div>
+
+<div class="skill-card">
+<h3>Calculations</h3>
+<p>Mechanical & engineering systems</p>
+</div>
+
+<div class="skill-card">
+<h3>Optimization</h3>
+<p>Efficient technical workflows</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="about">
+
+<div class="section-top">
+<div class="section-kicker">About</div>
+<h2 class="section-title">Who Am I</h2>
+<p class="section-text">
+Я digital creator,
+который совмещает технологии,
+визуал и программирование для создания современных проектов.
+</p>
+</div>
+
+<div class="skills-grid">
+
+<div class="skill-card">
+<h3>3D & Rendering</h3>
+<p>Blender, Substance Painter, Rendering Pipeline</p>
+</div>
+
+<div class="skill-card">
+<h3>Game Development</h3>
+<p>Unity, UE5, Gameplay Systems</p>
+</div>
+
+<div class="skill-card">
+<h3>Programming</h3>
+<p>C#, JavaScript, Python</p>
+</div>
+
+<div class="skill-card">
+<h3>AI Tools</h3>
+<p>ComfyUI, SD.WebUI, Local LLM</p>
+</div>
+
+<div class="skill-card">
+<h3>UI/UX Design</h3>
+<p>Modern interfaces & user experience</p>
+</div>
+
+<div class="skill-card">
+<h3>Creative Direction</h3>
+<p>Visual identity & atmosphere</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<div class="contact-panel">
+<h2>LET'S BUILD<br> SOMETHING INSANE</h2>
+
+<p>
+Открыт к сотрудничеству,
+интересным проектам,
+игровой разработке и creative production.
+</p>
+
+<div class="contact-buttons">
+<a href="mailto:jarkevithwlad@gmail.com" class="btn btn-primary">Email Me</a>
+<a href="https://t.me/wladis_dev" target="_blank" class="btn btn-ghost">Telegram</a>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 WlaDiS — Next Gen Portfolio
+</footer>
+
+<div class="lightbox" id="lightbox">
+<button class="close-lightbox" id="closeLightbox">✕</button>
+<img src="" id="lightboxImg">
+</div>
+
+<script>
+
+// LOADER
+
+window.addEventListener('load',()=>{
+setTimeout(()=>{
+document.getElementById('loader').classList.add('hidden');
+},2200)
+})
+
+// MOBILE MENU
+
+const menuBtn=document.getElementById('menuBtn');
+const navLinks=document.getElementById('navLinks');
+
+menuBtn.addEventListener('click',()=>{
+navLinks.classList.toggle('active');
+})
+
+// LIGHTBOX
+
+const images=document.querySelectorAll('.project img');
+const lightbox=document.getElementById('lightbox');
+const lightboxImg=document.getElementById('lightboxImg');
+const closeLightbox=document.getElementById('closeLightbox');
+
+images.forEach(img=>{
+img.addEventListener('click',()=>{
+lightbox.classList.add('active');
+lightboxImg.src=img.src;
+document.body.style.overflow='hidden';
+})
+})
+
+closeLightbox.addEventListener('click',()=>{
+lightbox.classList.remove('active');
+document.body.style.overflow='';
+})
+
+lightbox.addEventListener('click',(e)=>{
+if(e.target===lightbox){
+lightbox.classList.remove('active');
+document.body.style.overflow='';
+}
+})
+
+// GSAP
+
+gsap.registerPlugin(ScrollTrigger)
+
+const reveal=document.querySelectorAll('.project,.skill-card,.timeline-item,.contact-panel');
+
+reveal.forEach(item=>{
+
+gsap.from(item,{
+scrollTrigger:{
+trigger:item,
+start:'top 85%'
+},
+y:80,
+opacity:0,
+duration:1.2,
+ease:'power4.out'
+})
+
+})
+
+// HERO FLOATING
+
+gsap.to('.floating-1',{
+y:-20,
+duration:2,
+repeat:-1,
+yoyo:true,
+ease:'sine.inOut'
+})
+
+gsap.to('.floating-2',{
+y:20,
+duration:2.5,
+repeat:-1,
+yoyo:true,
+ease:'sine.inOut'
+})
+
+gsap.to('.floating-3',{
+y:-16,
+duration:1.8,
+repeat:-1,
+yoyo:true,
+ease:'sine.inOut'
+})
+
+// PARTICLE BACKGROUND
+
+const canvas=document.getElementById('bg');
+const ctx=canvas.getContext('2d');
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+for(let i=0;i<90;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2+1,
+dx:(Math.random()-.5)*0.5,
+dy:(Math.random()-.5)*0.5
+})
+}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+particles.forEach(p=>{
+
+p.x+=p.dx;
+p.y+=p.dy;
+
+if(p.x<0||p.x>canvas.width)p.dx*=-1;
+if(p.y<0||p.y>canvas.height)p.dy*=-1;
+
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle='rgba(255,255,255,.4)';
+ctx.fill();
+
+})
+
+requestAnimationFrame(animate)
+}
+
+animate();
+
+window.addEventListener('resize',()=>{
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+})
+
+</script>
 
 </body>
 </html>
+```
